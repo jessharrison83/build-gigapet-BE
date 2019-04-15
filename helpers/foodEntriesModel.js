@@ -1,3 +1,5 @@
+let idRef = 3;
+
 const dummyData = {
     data: [{
         id: 1,
@@ -18,8 +20,14 @@ const dummyData = {
         child_id: 1
     }],
     where: (id) => dummyData.data.filter(each => each.child_id == id),
-    insert: (entry) => {
-        dummyData.data.push(entry);
+    insert: (child_id, entry) => {
+        const entryPlusId = { 
+            id: idRef, 
+            child_id, 
+            ...entry 
+        };
+        dummyData.data.push(entryPlusId);
+        idRef++;
         return dummyData.data; 
     },
 };
@@ -33,9 +41,9 @@ async function get(id) {
     }   
 }
 
-function add(entry) {
+function add(id, entry) {
     try {
-        const entries = dummyData.insert(entry);
+        const entries = dummyData.insert(id, entry);
         return entries;
     } catch (error) {
         return error;

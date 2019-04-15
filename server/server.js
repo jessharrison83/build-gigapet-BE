@@ -13,11 +13,11 @@ server.use(cors());
 
 server.use("/api/auth", authRoutes);
 
-server.use("/api", foodEntriesRoutes);
-
 server.get("/", (req, res) => {
     res.status(200).send("Welcome to the Gigapet API 🐾");
 });
+
+server.use("/api", foodEntriesRoutes);
 
 server.use(authenticate);
 

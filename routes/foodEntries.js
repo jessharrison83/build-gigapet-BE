@@ -13,9 +13,20 @@ router.get("/child/:id/entries", async (req, res, next) => {
 
 router.post("/child/:id/entries", async (req, res, next) => {
     const { id } = req.params;
-    console.log(id);
+    const entry = req.body;
     try {
-        const entries = await Food.get(id);
+        const entries = await Food.add(id, entry);
+        res.status(200).json({ entries });
+    } catch (error) {
+        next({ status: 500, message: "entry not found" });
+    }
+});
+
+router.put("/child/:id/entries", async (req, res, next) => {
+    const { id } = req.params;
+    const entry = req.body;
+    try {
+        const entries = await Food.update(id, entry);
         res.status(200).json({ entries });
     } catch (error) {
         next({ status: 500, message: "entry not found" });
