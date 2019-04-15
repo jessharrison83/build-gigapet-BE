@@ -1,31 +1,25 @@
+const router = require("express").Router();
+const Food = require("../data/helpers/foodModel"); 
 
-const dummyData = {
-    where: (id) => this.data.filter(each => each.id === id),
-    data: [{
-        id: 1,
-        name: "Porridge",
-        quantity: 2,
-        meal: "Breakfast",
-        category: "Carbs",
-        date: "2019--04-15",
-        child_id: 1
-    }]};
-    
-async function get(id) {
+router.get("/child/:id/entries", async (req, res, next) => {
+    const { id } = req.params;
     try {
-        const entries = dummyData.where(id);
-        return entries;
+        const food = await Food.get(id);
+        res.status(200).json({ entries: food });
     } catch (error) {
-        return error;
-    }   
-}
+        next({ status: 500, message: "entry not found"});
+    }
+});
 
-function add(id) {
-    // 
-    return `added food for child ${id}`;
-}
+router.post("/child/:id/entries", async (req, res, next) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        const entries = await Food.get(id);
+        res.status(200).json({ entries });
+    } catch (error) {
+        next({ status: 500, message: "entry not found" });
+    }
+});
 
-module.exports = {
-    get,
-    add,
-};
+module.exports = router;

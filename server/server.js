@@ -5,7 +5,7 @@ const server = express();
 const { authenticate } = require("../middleware/auth");
 
 const authRoutes = require("../routes/auth");
-const foodEntriesRoutes = require('../foodEntries');
+const foodEntriesRoutes = require("../routes/foodEntries");
 
 server.use(helmet());
 server.use(express.json());
@@ -13,10 +13,10 @@ server.use(cors());
 
 server.use("/api/auth", authRoutes);
 
-server.use("/api", foodEntriesRoutes)
+server.use("/api", foodEntriesRoutes);
 
 server.get("/", (req, res) => {
-  res.status(200).send(`Welcome to the Gigapet API 🐾`);
+    res.status(200).send("Welcome to the Gigapet API 🐾");
 });
 
 server.use(authenticate);
