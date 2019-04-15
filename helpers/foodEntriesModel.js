@@ -80,9 +80,20 @@ async function remove(id) {
     }
 }
 
+async function getFilter(query) {
+
+    try {
+        const entries = ["hello"];
+        return entries;
+    } catch (error) {
+        return error;
+    }
+}
+
 module.exports = {
     get,
     add,
     update,
-    remove
+    remove,
+    getFilter
 };
