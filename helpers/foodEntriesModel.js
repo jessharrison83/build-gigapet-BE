@@ -32,15 +32,16 @@ const dummyData = {
     },
     update: (id, entry) => {
         return dummyData.data.map(each => {
-           if (each.id == id) {
-               return {
-                   id: each.id,
-                   ...entry
-               }
-           }
-           return each;
+            if (each.id == id) {
+                return {
+                    id: each.id,
+                    ...entry
+                };
+            }
+            return each;
         });
-    }
+    },
+    remove: (id) => dummyData.data.filter(each => each.id != id),
 };
 
 async function get(id) {
@@ -68,11 +69,21 @@ async function update(id, entry) {
     } catch (error) {
         return error;
     }
-};
+}
+
+async function remove(id) {
+    try {
+        const entries = dummyData.remove(id);
+        return entries;
+    } catch (error) {
+        return error;
+    }
+}
 
 
 module.exports = {
     get,
     add,
     update,
+    remove
 };
