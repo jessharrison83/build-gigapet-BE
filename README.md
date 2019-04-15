@@ -6,7 +6,7 @@ This document contains:
 2. General information
 3. API endpoints and intrusctions on how to use them
 
-## Git flow for collaborating:
+## Git flow for teams:
 
 **Making pull requests**
 Clone this repository locally. Do not fork it. Once you clone the repo locally, create a new branch.
