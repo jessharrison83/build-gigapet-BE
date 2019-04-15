@@ -11,4 +11,15 @@ router.get("/child/:id/entries", async (req, res, next) => {
     }
 });
 
+router.post("/child/:id/entries", async (req, res, next) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        const entries = await Food.get(id);
+        res.status(200).json({ entries });
+    } catch (error) {
+        next({ status: 500, message: "entry not found" });
+    }
+});
+
 module.exports = router;
