@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Food = require("../helpers/foodEntriesModel"); 
+const Food = require("../helpers/foodEntriesModel");
 
 router.get("/child/:id/entries", async (req, res, next) => {
     const { id } = req.params;
@@ -7,7 +7,10 @@ router.get("/child/:id/entries", async (req, res, next) => {
         const food = await Food.get(id);
         res.status(200).json({ entries: food });
     } catch (error) {
-        next({ status: 500, message: "entry not found"});
+        next({
+            status: 500,
+            message: "entry not found"
+        });
     }
 });
 
@@ -18,7 +21,10 @@ router.post("/child/:id/entries", async (req, res, next) => {
         const entries = await Food.add(id, entry);
         res.status(200).json({ entries });
     } catch (error) {
-        next({ status: 500, message: "entry not found" });
+        next({
+            status: 500,
+            message: "entry not found"
+        });
     }
 });
 
@@ -29,7 +35,10 @@ router.put("/entries/:id", async (req, res, next) => {
         const entries = await Food.update(id, entry);
         res.status(200).json({ entries });
     } catch (error) {
-        next({ status: 500, message: "entry not found" });
+        next({
+            status: 500,
+            message: "entry not found"
+        });
     }
 });
 
@@ -39,7 +48,10 @@ router.delete("/entries/:id", async (req, res, next) => {
         const entries = await Food.remove(id);
         res.status(200).json({ entries });
     } catch (error) {
-        next({ status: 500, message: "entry not found" });
+        next({
+            status: 500,
+            message: "entry not found"
+        });
     }
 });
 
