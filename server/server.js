@@ -11,12 +11,13 @@ server.use(express.json());
 server.use(cors());
 
 server.use("/api/auth", authRoutes);
-server.use(authenticate);
-
-// Routes:
 
 server.get("/", (req, res) => {
   res.status(200).send(`Welcome to the Gigapet API 🐾`);
 });
+
+server.use(authenticate);
+
+// Routes:
 
 module.exports = server;
