@@ -4,7 +4,7 @@ This document contains:
 
 1. Git flow for working with teams
 2. General information
-3. Endpoints and how to use the API
+3. API endpoints and intrusctions on how to use them
 
 ## Git flow for collaborating:
 
@@ -35,3 +35,9 @@ git pull // <--- this should update your files with master
 git checkout -b <your-new-branch>```
 ````
 
+## General Information:
+
+- Server URL: **_Add URL here once deployed_**
+- Schema draft: https://dbdesigner.page.link/Zs6Bw9SrXUWyjrL37
+
+## Endpoints:
