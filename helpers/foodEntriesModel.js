@@ -81,9 +81,8 @@ async function remove(id) {
 }
 
 async function getFilter(query) {
-
     try {
-        const entries = ["hello"];
+        const entries = ["working"];
         return entries;
     } catch (error) {
         return error;

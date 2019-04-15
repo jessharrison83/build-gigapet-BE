@@ -58,7 +58,8 @@ router.delete("/entries/:id", async (req, res, next) => {
 router.get("/entries", async (req, res, next) => {
     const { query } = req;
     try {
-        res.send("working");
+        const entries = await Food.getFilter(query);
+        res.status(200).json(entries);
     } catch (error) {
         next({
             status: 500,
