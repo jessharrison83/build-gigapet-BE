@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Food = require("../data/helpers/foodModel"); 
+const Food = require("../helpers/foodEntriesModel"); 
 
 router.get("/child/:id/entries", async (req, res, next) => {
     const { id } = req.params;
