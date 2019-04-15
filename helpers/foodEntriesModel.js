@@ -30,6 +30,17 @@ const dummyData = {
         idRef++;
         return dummyData.data; 
     },
+    update: (id, entry) => {
+        return dummyData.data.map(each => {
+           if (each.id == id) {
+               return {
+                   id: each.id,
+                   ...entry
+               }
+           }
+           return each;
+        });
+    }
 };
 
 async function get(id) {
@@ -41,7 +52,7 @@ async function get(id) {
     }   
 }
 
-function add(id, entry) {
+async function add(id, entry) {
     try {
         const entries = dummyData.insert(id, entry);
         return entries;
@@ -50,7 +61,18 @@ function add(id, entry) {
     }
 }
 
+async function update(id, entry) {
+    try {
+        const entries = dummyData.update(id, entry);
+        return entries;
+    } catch (error) {
+        return error;
+    }
+};
+
+
 module.exports = {
     get,
     add,
+    update,
 };
