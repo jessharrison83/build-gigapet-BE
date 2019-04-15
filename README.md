@@ -37,3 +37,67 @@ git checkout -b <your-new-branch>```
 - Schema draft: https://dbdesigner.page.link/Zs6Bw9SrXUWyjrL37
 
 ## Endpoints:
+
+### AUTH
+
+**Register a new parent**
+
+URL: /api/auth/register
+
+Request body:
+
+```
+{
+    name: 'string', // required
+    email: 'string', // required, must be unique
+    username: 'string', // required, must be unique
+    password: 'string', // required
+}
+```
+
+Successful response: 201 (Created)
+
+```
+{
+    token: 'string', // set this in local storage and use it in the request header to access restricted routes
+     id: number // can be used to get parent details in the user page
+}
+```
+
+Unsuccessful response: 500
+
+```
+{
+    message: 'The user could not be created'
+}
+```
+
+Reasons for unsuccessfull response: User or email is taken, internal server error.
+
+**Login with existing parent**
+
+Request body:
+
+```
+{
+    'username': 'string', // required
+    'password': 'string', // required
+}
+```
+
+Successful response: 200 (OK)
+
+```
+{
+    token: 'string', // same as register
+    id: number // same as register
+}
+```
+
+Unsuccessful response: 500
+
+```
+{
+    message: 'User could not be found'
+}
+```

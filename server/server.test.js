@@ -1,6 +1,5 @@
 const server = require("./server");
 const request = require("supertest");
-const db = require("../helpers/dbConfig");
 
 describe("Server", () => {
   it("is using the right environment", () => {
