@@ -4,7 +4,7 @@ This document contains:
 
 1. Git flow for working with teams
 2. General information
-3. API endpoints and intrusctions on how to use them
+3. API endpoints and instructions on how to use them
 
 ## Git flow for teams:
 
@@ -20,7 +20,7 @@ You will now be switched to your branch, that you can start working on. You can 
 
 **After creating pull request**
 
-Check and resolve any conflicts. Ask for review from team leader and your team mate. Team Leader will then merge pull request.
+Check and resolve any conflicts. Ask for review from team leader or PM. Team Leader or PM will then merge pull request.
 
 **After pull request has been merged**
 
@@ -33,7 +33,7 @@ git checkout -b <your-new-branch>```
 
 ## General Information:
 
-- API URL: **_Add URL here once deployed_**
+- API URL: https://lambda-gigapet.herokuapp.com/
 - Schema draft: https://airtable.com/invite/l?inviteId=invyoVfZQYErrQD6x&inviteToken=209673e8e1718f2a01bdccfc8aebe38b1cc08d86c54593ebe9d595e0c6727d39
 
 ## Endpoints:
@@ -77,6 +77,8 @@ Reasons for unsuccessfull response: Username or email is taken, internal server 
 
 **Login with existing parent**
 
+URL: /api/auth/login
+
 Request body:
 
 ```
@@ -102,3 +104,21 @@ Unsuccessful response: 500
     message: 'User could not be found'
 }
 ```
+
+### PARENTS
+
+### CHILDREN AND PETS
+
+**GET ALL PETS**
+
+URL: /api/pet
+
+Returns an array of pets, and their corresponding moods. These pets are not assined to any child, but can be used for display a pet for the child/parent to choose.
+
+**GET CHILD BY ID AND THEIR PET DETAILS**
+
+URL: /api/child/:id
+
+Returns the child object and details for his/her pet with corresponding moods. For example:
+
+### FOOD ENTRIES
