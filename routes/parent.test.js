@@ -20,6 +20,8 @@ describe("parent endpoint", () => {
                 .toBe("application/json"); 
             expect(res.status) 
                 .toBe(200);
+            expect(res.body)
+                .toEqual([]);
         } catch (error) {
             console.log(error); //eslint-disable-line
         }
