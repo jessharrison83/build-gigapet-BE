@@ -7,12 +7,14 @@ const token = generateToken({
     username: "Matt"
 });
 
+const authHeader = "Authorization";
+
 describe("parent endpoint", () => { 
     it("returns status code 200", async () => {
         try {
             const res = await request(routes)
                 .get("/api/parent/2")
-                .set("Authorization", token);
+                .set(authHeader, token);
 
             expect(res.type)
                 .toBe("application/json"); 

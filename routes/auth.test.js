@@ -4,6 +4,11 @@ const jwt = require("jsonwebtoken");
 
 const db = require("../helpers/dbConfig");
 
+const routes = {
+    register: "/api/auth/register",
+    login: "/api/auth/login"
+};
+
 const userObj = {
     name: "Mark", // required
     email: "mark@markey.com", // required, must be unique
@@ -19,7 +24,7 @@ describe("Register new user", () => {
 
     it("Returns a token for a new user", async () => {
         const res = await request(server)
-            .post("/api/auth/register")
+            .post(routes.register)
             .send(userObj);
 
         expect(res.status).toBe(201);
@@ -45,7 +50,7 @@ describe("Login user", () => {
         
         try {
             const res = await request(server)
-                .post("/api/auth/login")
+                .post(routes.login)
                 .send({
                     username: "markymark", // required, must be unique
                     password: "xxx", // required
@@ -62,7 +67,7 @@ describe("Login user", () => {
 
     it("decrypts token correctly with secret", async () => {
         const key = process.env.SECRET;
-        
+
         try {
             const res = await request(server)
                 .post("/api/auth/register")
