@@ -44,9 +44,11 @@ const dummyData = {
     remove: (id) => dummyData.data.filter(each => each.id != id),
 };
 
+const db = require("./dbConfig");
+
 async function get(id) {
     try {
-        const entries = dummyData.where(id);
+        const entries = await db("food_entry").where({ id });
         return entries;
     } catch (error) {
         return error;
@@ -55,7 +57,12 @@ async function get(id) {
 
 async function add(id, entry) {
     try {
-        const entries = dummyData.insert(id, entry);
+        const newEntry = {
+            child_id: id,
+            ...entry,
+        };
+        const entryId = await db.insert(newEntry).into("food_entry");
+        const entries = await get(entryId);
         return entries;
     } catch (error) {
         return error;

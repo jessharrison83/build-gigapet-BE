@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
             .notNullable();
         table.string("category").notNullable();
         table.timestamp("date_added").notNullable();
-        table.timestamp("date_update").notNullable();
+        table.timestamp("date_updated");
         table.integer("child_id").notNullable();
     });
 };
