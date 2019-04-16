@@ -4,11 +4,16 @@ module.exports = {
   getById: id => {
     return db("children")
       .select(
+        "children.id",
         "children.name",
         "children.pet_name",
         "children.pet_level",
-        "pets.description",
-        "pets.img_url"
+        "children.pet_id",
+        "pets.happy",
+        "pets.ok",
+        "pets.sad",
+        "pets.sick",
+        "pets.eating"
       )
       .innerJoin("pets", "children.pet_id", "pets.id")
       .where({ "children.id": id });

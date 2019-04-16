@@ -11,4 +11,9 @@ describe("Server", () => {
     const res = await request(server).get("/");
     expect(res.text).toEqual(message);
   });
+
+  it("returns a 200 OK status", async () => {
+    const res = await request(server).get("/");
+    expect(res.status).toBe(200);
+  });
 });
