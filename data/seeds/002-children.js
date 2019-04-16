@@ -1,13 +1,15 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex("children")
+    .truncate()
+    .then(function() {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex("children").insert([
+        { id: 1, name: "Charlie", pet_name: "Acorn", pet_level: 1, pet_id: 1 },
+        { id: 2, name: "Jacob", pet_name: "Biscuit", pet_level: 2, pet_id: 2 },
+        { id: 3, name: "Alfie", pet_name: "Cosmo", pet_level: 3, pet_id: 3 },
+        { id: 4, name: "Olivia", pet_name: "Daisy", pet_level: 1, pet_id: 4 },
+        { id: 5, name: "Amelia", pet_name: "Fig", pet_level: 2, pet_id: 5 }
       ]);
     });
 };
