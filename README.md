@@ -34,7 +34,7 @@ git checkout -b <your-new-branch>```
 ## General Information:
 
 - API URL: **_Add URL here once deployed_**
-- Schema draft: https://dbdesigner.page.link/Zs6Bw9SrXUWyjrL37
+- Schema draft: https://airtable.com/invite/l?inviteId=invyoVfZQYErrQD6x&inviteToken=209673e8e1718f2a01bdccfc8aebe38b1cc08d86c54593ebe9d595e0c6727d39
 
 ## Endpoints:
 
@@ -52,6 +52,7 @@ Request body:
     email: 'string', // required, must be unique
     username: 'string', // required, must be unique
     password: 'string', // required
+    img_url: 'string', // not required
 }
 ```
 
@@ -72,7 +73,7 @@ Unsuccessful response: 500
 }
 ```
 
-Reasons for unsuccessfull response: User or email is taken, internal server error.
+Reasons for unsuccessfull response: Username or email is taken, internal server error.
 
 **Login with existing parent**
 

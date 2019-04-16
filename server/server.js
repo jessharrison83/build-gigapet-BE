@@ -19,5 +19,10 @@ server.get("/", (req, res) => {
 server.use(authenticate);
 
 // Routes:
+const childRoutes = require("../routes/child");
+const petRoutes = require("../routes/pet");
+
+server.use("/api/child", childRoutes);
+server.use("/api/pet", petRoutes);
 
 module.exports = server;
