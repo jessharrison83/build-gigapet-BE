@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "cross-env DB_ENV=testing jest --watch --verbose"
+    "test": "cross-env SECRET=`Eat you veggies kids` DB_ENV=testing jest --watchAll --verbose"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

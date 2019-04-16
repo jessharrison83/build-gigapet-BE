@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../helpers/childrenModel");
 
+// Get child and pet details by id
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -12,6 +13,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Edit child and pet details
 router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -31,6 +33,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// Delete child and pet details
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
