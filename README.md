@@ -43,6 +43,7 @@ git checkout -b <your-new-branch>```
 **Register a new parent**
 
 URL: /api/auth/register
+Method: Post
 
 Request body:
 
@@ -78,6 +79,7 @@ Reasons for unsuccessfull response: Username or email is taken, internal server 
 **Login with existing parent**
 
 URL: /api/auth/login
+Method: Post
 
 Request body:
 
@@ -112,13 +114,134 @@ Unsuccessful response: 500
 **GET ALL PETS**
 
 URL: /api/pet
+Method: Get
 
-Returns an array of pets, and their corresponding moods. These pets are not assined to any child, but can be used for display a pet for the child/parent to choose.
+Returns an array of pets, and their corresponding moods. These pets are not assigned to any child, but can be displayed for the child/parent to choose.
+
+Example data:
+
+```
+[
+    {
+          id: 1,
+          species: "Purple Egg",
+          description: "Round and purple like a grape, this pet loves to eat berries!",
+          happy: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435830/Gifs/Webp.net-gifmaker_f0hl57.gif",
+          ok: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435958/Gifs/Webp.net-gifmaker_1_ejgwun.gif",
+          sad: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436094/Gifs/Webp.net-gifmaker_2_hojrvi.gif",
+          sick: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436485/Gifs/Webp.net-gifmaker_3_vqh028.gif",
+          eating: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435767/Gifs/output_MZEjzK_budyho.gif"
+    },
+    {
+          id: 2,
+          species: "Another egg color",
+          description: "Mystery is its name!",
+          happy: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435830/Gifs/Webp.net-gifmaker_f0hl57.gif",
+          ok: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435958/Gifs/Webp.net-gifmaker_1_ejgwun.gif",
+          sad: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436094/Gifs/Webp.net-gifmaker_2_hojrvi.gif",
+          sick: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436485/Gifs/Webp.net-gifmaker_3_vqh028.gif",
+          eating: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435767/Gifs/output_MZEjzK_budyho.gif"
+    },
+
+]
+```
+
+**ADD NEW CHILD AND CHOOSE PET**
+
+URL: /api/parent/:id/child
+Method: Post
 
 **GET CHILD BY ID AND THEIR PET DETAILS**
 
 URL: /api/child/:id
+Method: Get
+Sucessful response: 200 OK
 
-Returns the child object and details for his/her pet with corresponding moods. For example:
+Returns the child object and details for his/her pet with corresponding pet moods.
+
+Example data:
+
+```
+{
+    id: 1,
+    name: "Charlie",
+    pet_id: 1,
+    pet_name: "Blueberry",
+    pet_level: 1,
+    happy: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435830/Gifs/Webp.net-gifmaker_f0hl57.gif",
+    ok: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435958/Gifs/Webp.net-gifmaker_1_ejgwun.gif",
+    sad: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436094/Gifs/Webp.net-gifmaker_2_hojrvi.gif",
+    sick: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555436485/Gifs/Webp.net-gifmaker_3_vqh028.gif",
+    eating: "https://res.cloudinary.com/duf2xn4qf/image/upload/v1555435767/Gifs/output_MZEjzK_budyho.gif"
+}
+```
+
+Unsuccessful response: 500
+
+**EDIT CHILD AND THEIR PET**
+
+URL: /api/child/:id
+Method: Put
+Sucessful response: 200 OK
+
+Any of the following fields can be edited:
+
+```
+    name: "Charlie",
+    pet_id: 1,
+    pet_name: "Blueberry",
+    pet_level: 1,
+```
+
+For example, to change the pet's name, the request body would be:
+
+```
+ {
+     pet_name: "Acorn"
+ }
+```
+
+The response data will return the full child object with the change that was implemented:
+
+```
+{
+    "id": 1,
+    "name": "Charlie",
+    "pet_id": 1,
+    "pet_name": "Acorn",
+    "pet_level": 1,
+    "happy": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+    "ok": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+    "sad": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+    "sick": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+    "eating": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg"
+}
+```
+
+Unsuccessful response: 400 or 500
+
+**DELETE CHILD AND THEIR PET**
+
+URL: /api/child/:id
+Method: Delete
+Sucessful response: 200 OK
+
+Deleting the child also removes their pet data.
+
+If successful, returns message:
+
+```
+{
+    message: `The child with ID ${id} was successfully deleted`
+}
+```
+
+If unsuccessful, for example the child doesn't exist, returns status 404 or 500 with:
+
+```
+{
+    error: `The child with ID ${id} could not be deleted`
+}
+```
 
 ### FOOD ENTRIES
