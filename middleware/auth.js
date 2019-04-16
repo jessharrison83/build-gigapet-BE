@@ -4,25 +4,25 @@ const db = require("../helpers/dbConfig");
 const key = process.env.SECRET;
 
 module.exports = {
-  authenticate,
-  generateToken
+    authenticate,
+    generateToken
 };
 
 function generateToken(user) {
-  const payload = {
-    id: user.id,
-    username: user.username
-  };
+    const payload = {
+        id: user.id,
+        username: user.username
+    };
 
-  const options = {
-    expiresIn: "1d"
-  };
+    const options = {
+        expiresIn: "1d"
+    };
 
-  return jwt.sign(payload, key, options);
+    return jwt.sign(payload, key, options);
 }
 
 function authenticate(req, res, next) {
-  const token = req.headers.authorization;
+    const token = req.headers.authorization;
 
   if (token) {
     jwt.verify(token, key, async (err, decoded) => {
