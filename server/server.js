@@ -13,16 +13,18 @@ server.use(express.json());
 server.use(cors());
 
 server.use("/api/auth", authRoutes);
-server.use("/api/parents", parentRoutes);
+
 
 server.get("/", (req, res) => {
     res.status(200).send("Welcome to the Gigapet API 🐾");
 });
 
-server.use("/api", foodEntriesRoutes);
+
 
 server.use(authenticate);
 
 // Routes:
+server.use("/api/parents", parentRoutes);
+server.use("/api", foodEntriesRoutes);
 
 module.exports = server;
