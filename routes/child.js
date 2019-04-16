@@ -5,16 +5,10 @@ const db = require("../helpers/childrenModel");
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const child = await db.getById(id);
-    if (child.length) {
-      res.status(200).json(child);
-    } else {
-      res
-        .status(404)
-        .json({ message: `The child with ID ${id} doesn't exist` });
-    }
+    const child = await db.getById(id).first();
+    res.status(200).json(child);
   } catch (error) {
-    res.status(500).json({ message: `Error retrieving child` });
+    res.status(500).json({ message: `The child with ID ${id} doesn't exist` });
   }
 });
 
@@ -25,7 +19,7 @@ router.put("/:id", async (req, res) => {
     const updatedResponse = await db.update(id, body);
 
     if (updatedResponse) {
-      const responseBody = await db.getById(id);
+      const responseBody = await db.getById(id).first();
       res.status(200).json(responseBody);
     } else {
       res

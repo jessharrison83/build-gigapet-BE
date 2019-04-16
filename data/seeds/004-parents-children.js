@@ -1,10 +1,10 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex("parents-children")
+  return knex("parentsChildren")
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex("parents-children").insert([
+      return knex("parentsChildren").insert([
         { id: 1, parent_id: 1, child_id: 1 },
         { id: 2, parent_id: 2, child_id: 2 },
         { id: 3, parent_id: 1, child_id: 3 },
