@@ -5,9 +5,24 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return knex("pets").insert([
-        { id: 1, species: "rowValue1", description: "", img_url: "" },
-        { id: 2, species: "rowValue2", description: "", img_url: "" },
-        { id: 3, species: "rowValue3", description: "", img_url: "" }
+        {
+          id: 1,
+          species: "egg",
+          description: "Round and sweet",
+          img_url: ""
+        },
+        {
+          id: 2,
+          species: "egg",
+          description: "Round and sweet",
+          img_url: ""
+        },
+        {
+          id: 3,
+          species: "egg",
+          description: "Round and sweet",
+          img_url: ""
+        }
       ]);
     });
 };
