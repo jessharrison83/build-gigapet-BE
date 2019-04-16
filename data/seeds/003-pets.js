@@ -7,21 +7,19 @@ exports.seed = function(knex, Promise) {
       return knex("pets").insert([
         {
           id: 1,
-          species: "egg",
-          description: "Round and sweet",
-          img_url: ""
-        },
-        {
-          id: 2,
-          species: "egg",
-          description: "Round and sweet",
-          img_url: ""
-        },
-        {
-          id: 3,
-          species: "egg",
-          description: "Round and sweet",
-          img_url: ""
+          species: "Purple Egg",
+          description:
+            "Round and purple like a grape, this pet loves to eat berries!",
+          happy:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+          ok:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+          sad:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+          sick:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg",
+          eating:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Egg_upright.jpg/1200px-Egg_upright.jpg"
         }
       ]);
     });
