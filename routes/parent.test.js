@@ -7,16 +7,16 @@ const token = generateToken({
     username: "Matt"
 });
 
-describe("parent endpoint", () => { //eslint-disable-line
-    it("returns status code 200", async () => { //eslint-disable-line
+describe("parent endpoint", () => { 
+    it("returns status code 200", async () => {
         try {
             const res = await request(routes)
                 .get("/api/parent/2")
                 .set("Authorization", token);
 
-            expect(res.type) //eslint-disable-line
+            expect(res.type)
                 .toBe("application/json"); 
-            expect(res.status) //eslint-disable-line
+            expect(res.status) 
                 .toBe(200);
         } catch (error) {
             console.log(error); //eslint-disable-line
