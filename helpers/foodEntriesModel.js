@@ -48,6 +48,15 @@ const db = require("./dbConfig");
 
 async function get(id) {
     try {
+        const entries = await db("food_entry").where({ child_id: id });
+        return entries;
+    } catch (error) {
+        return error;
+    }   
+}
+
+async function getById(id) {
+    try {
         const entries = await db("food_entry").where({ id });
         return entries;
     } catch (error) {
@@ -56,13 +65,14 @@ async function get(id) {
 }
 
 async function add(id, entry) {
+    const newEntry = {
+        child_id: id,
+        ...entry,
+    };
+    
     try {
-        const newEntry = {
-            child_id: id,
-            ...entry,
-        };
         const entryId = await db.insert(newEntry).into("food_entry");
-        const entries = await get(entryId);
+        const entries = await getById(entryId);
         return entries;
     } catch (error) {
         return error;
@@ -80,8 +90,9 @@ async function update(id, entry) {
 
 async function remove(id) {
     try {
-        const entries = dummyData.remove(id);
-        return entries;
+        const entryToDelete = await getById(id);
+        await db("food_entry").where({ id }).del();
+        return entryToDelete;
     } catch (error) {
         return error;
     }
@@ -98,6 +109,7 @@ async function getFilter(query) {
 
 module.exports = {
     get,
+    getById,
     add,
     update,
     remove,
