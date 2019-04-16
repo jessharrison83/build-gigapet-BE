@@ -61,5 +61,5 @@ typings/
 .next
 
 #db 
-/data/test.sqlite3
-/data/gigapet.sqlite3
+# /data/test.sqlite3
+# /data/gigapet.sqlite3
