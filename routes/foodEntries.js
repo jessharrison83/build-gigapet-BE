@@ -4,8 +4,8 @@ const Food = require("../helpers/foodEntriesModel");
 router.get("/child/:id/entries", async (req, res, next) => {
     const { id } = req.params;
     try {
-        const food = await Food.get(id);
-        res.status(200).json({ entries: food });
+        const entries = await Food.get(id);
+        res.status(200).json(entries);
     } catch (error) {
         next({
             status: 500,
@@ -19,7 +19,7 @@ router.post("/child/:id/entries", async (req, res, next) => {
     const entry = req.body;
     try {
         const entries = await Food.add(id, entry);
-        res.status(201).json({ entries });
+        res.status(201).json(entries);
     } catch (error) {
         next({
             status: 500,
@@ -33,7 +33,7 @@ router.put("/entries/:id", async (req, res, next) => {
     const entry = req.body;
     try {
         const entries = await Food.update(id, entry);
-        res.status(201).json({ entries });
+        res.status(201).json(entries);
     } catch (error) {
         next({
             status: 500,
