@@ -73,17 +73,4 @@ router.delete("/entries/:id", async (req, res, next) => {
   }
 });
 
-router.get("/entries", async (req, res, next) => {
-  const { query } = req;
-  try {
-    const entries = await Food.getFilter(query);
-    res.status(200).json("hi");
-  } catch (error) {
-    next({
-      status: 500,
-      message: "entry not found"
-    });
-  }
-});
-
 module.exports = router;

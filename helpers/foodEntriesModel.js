@@ -6,8 +6,14 @@ function filterData(entries) {
     carbs: [],
     vegetables: [],
     fruit: [],
-    diary: []
+    diary: [],
+    treats: []
   };
+
+  const sortedEntries = entries.reduce((acc, entry) => {
+    acc[entry.category.toLowerCase()].push(entry);
+    return acc;
+  }, initialAcc);
 
   const sortedEntries = entries.reduce((acc, entry) => {
     acc[entry.category.toLowerCase()].push(entry);
