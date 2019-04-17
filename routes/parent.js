@@ -4,6 +4,7 @@ const Child = require("../helpers/childrenModel");
 
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
+
   try {
     const parent = await Parent.get(id);
     res.status(200).json(parent);
@@ -13,14 +14,14 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/:id/child", async (req, res, next) => {
-    const { id } = req.params;
-    const { body } = req;
-    try {
-        const child = await Child.add(id, body);
-        res.send(child);
-    } catch (error) {
-        next({ status: 500, message: "Could not add child" });
-    }
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const child = await Child.add(id, body);
+    res.send(child);
+  } catch (error) {
+    next({ status: 500, message: "Could not add child" });
+  }
 });
 
 module.exports = router;
