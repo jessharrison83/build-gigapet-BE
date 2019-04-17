@@ -35,8 +35,9 @@ router.put("/:id", async (req, res) => {
 
 // Delete child and pet details
 router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+
   try {
-    const id = req.params.id;
     const deletedResponse = await db.remove(id);
 
     if (deletedResponse) {
