@@ -35,7 +35,7 @@ async function get(id) {
     const parentObj = {
       id: parent.id,
       name: parent.name,
-      pin_code: parent.pin_code,
+      img_url: parent.img_url,
       childArray
     };
 

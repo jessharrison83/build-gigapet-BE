@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
           email: "jeremy@jeremy.com",
           username: "jeremy",
           password: jeremyPassword,
-          pin_code: 1234,
+          pin: 1234,
           img_url:
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
         },
@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
           email: "steve@steve.com",
           username: "steve",
           password: stevePassword,
-          pin_code: 1234,
+          pin: 1234,
           img_url:
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
         }

@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
       .unique();
     table.string("password").notNullable();
     table.string("img_url");
-    table.integer("pin_code");
+    table.integer("pin");
   });
 };
 
