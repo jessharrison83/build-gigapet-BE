@@ -73,7 +73,6 @@ router.delete("/entries/:id", async (req, res, next) => {
   }
 });
 
-// ! Needs review
 router.get("/entries", async (req, res, next) => {
   const { query } = req;
   try {
