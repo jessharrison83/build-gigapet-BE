@@ -12,25 +12,21 @@ async function get(id) {
         { child_name: "children.name" },
         "children.pet_name",
         "children.pet_experience",
-        "children.pet_id"
+        "children.pet_id",
+        "pets.happy",
+        "pets.ok",
+        "pets.sad",
+        "pets.sick",
+        "pets.eating"
       )
       .innerJoin("parentsChildren", "parents.id", "parentsChildren.parent_id")
-      .innerJoin("children", "parentsChildren.child_id", "children.id");
+      .innerJoin("children", "parentsChildren.child_id", "children.id")
+      .innerJoin("pets", "children.pet_id", "pets.id");
 
-    const childArray = parentChildren.reduce(
-      (acc, { child_id, child_name, pet_name, pet_experience, pet_id }) => {
-        acc.push({
-          child_id,
-          child_name,
-          pet_name,
-          pet_experience,
-          pet_id
-        });
-
-        return acc;
-      },
-      []
-    );
+    const childArray = parentChildren.reduce((acc, each) => {
+      acc.push({ ...each });
+      return acc;
+    }, []);
 
     const parentObj = {
       id: parent.id,

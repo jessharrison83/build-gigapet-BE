@@ -15,6 +15,12 @@ describe("GET /child/:id/entries", () => {
             .get("/api/child/1/entries")
             .set(authHeader, token);
         expect(res.status).toBe(200);
-        expect(res.body).toEqual({ "entries": [] });
+        expect(res.body).toEqual({ 
+            "carbs": [],
+            "fruit": [],
+            "protein": [],
+            "vegetables": [],
+            "diary": []
+        });
     });
 });

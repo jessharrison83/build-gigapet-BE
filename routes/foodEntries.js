@@ -3,9 +3,17 @@ const Food = require("../helpers/foodEntriesModel");
 
 router.get("/child/:id/entries", async (req, res, next) => {
   const { id } = req.params;
+  const { query } = req;
+
   try {
-    const food = await Food.get(id);
-    res.status(200).json({ entries: food });
+    let entries;
+    const queriesExist = Object.keys(query).length;
+    if (queriesExist) {
+      entries = await Food.getFilter(id, query);
+    } else {
+      entries = await Food.get(id);
+    }
+    res.status(200).json(entries);
   } catch (error) {
     next({
       status: 500,
@@ -33,7 +41,7 @@ router.put("/entries/:id", async (req, res, next) => {
   const entry = req.body;
   try {
     const entries = await Food.update(id, entry);
-    res.status(201).json({ entries });
+    res.status(201).json(entries);
   } catch (error) {
     next({
       status: 500,
@@ -59,7 +67,7 @@ router.get("/entries", async (req, res, next) => {
   const { query } = req;
   try {
     const entries = await Food.getFilter(query);
-    res.status(200).json(entries);
+    res.status(200).json("hi");
   } catch (error) {
     next({
       status: 500,
