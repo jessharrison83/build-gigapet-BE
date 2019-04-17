@@ -1,11 +1,11 @@
-const localPgConnection = {
-  host: "localhost",
-  database: "nifty",
-  username: "delba",
-  password: "delba"
-};
+// const localPgConnection = {
+//   host: "localhost",
+//   database: "nifty",
+//   username: "delba",
+//   password: "delba"
+// };
 
-const productionDbConnection = process.env.DATABASE_URL || localPgConnection;
+// const productionDbConnection = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
   development: {
@@ -33,15 +33,15 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     }
-  },
-  production: {
-    client: "pg",
-    connection: productionDbConnection,
-    migrations: {
-      directory: "./data/migrations"
-    },
-    seeds: {
-      directory: "./data/seeds"
-    }
   }
+  //   production: {
+  //     client: "pg",
+  //     connection: productionDbConnection,
+  //     migrations: {
+  //       directory: "./data/migrations"
+  //     },
+  //     seeds: {
+  //       directory: "./data/seeds"
+  //     }
+  //   }
 };

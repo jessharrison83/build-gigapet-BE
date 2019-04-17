@@ -4,13 +4,13 @@ exports.up = function(knex, Promise) {
     table.string("name").notNullable();
     table.string("pet_name").notNullable();
     table.integer("pet_experience");
-    // table
-    //   .integer("pet_id")
-    //   .unsigned()
-    //   .references("id")
-    //   .inTable("pets");
-    //   .onDelete("CASCADE")
-    //   .onUpdate("CASCADE");
+    table
+      .integer("pet_id")
+      .unsigned()
+      .references("id")
+      .inTable("pets")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE");
   });
 };
 
