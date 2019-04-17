@@ -6,7 +6,8 @@ function filterData(entries) {
         carbs: [],
         vegetables: [],
         fruit: [],
-        diary: []
+        diary: [],
+        treats: [],
     };
 
     const sortedEntries = entries.reduce((acc, entry) => {
