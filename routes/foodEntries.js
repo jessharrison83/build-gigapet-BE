@@ -40,8 +40,13 @@ router.put("/entries/:id", async (req, res, next) => {
   const { id } = req.params;
   const entry = req.body;
   try {
-    const entries = await Food.update(id, entry);
-    res.status(201).json(entries);
+    const response = await Food.update(id, entry);
+    if (response) {
+      const newEntry = await Food.getById(id);
+      res.status(201).json(newEntry);
+    } else {
+      res.status(404).json({ message: `Entry could not be updated` });
+    }
   } catch (error) {
     next({
       status: 500,
@@ -53,8 +58,13 @@ router.put("/entries/:id", async (req, res, next) => {
 router.delete("/entries/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
-    const entries = await Food.remove(id);
-    res.status(201).json({ entries });
+    const response = await Food.remove(id);
+
+    if (response) {
+      res.status(201).json({
+        message: `The food entry with ${id} was successfully deleted`
+      });
+    }
   } catch (error) {
     next({
       status: 500,
@@ -63,6 +73,7 @@ router.delete("/entries/:id", async (req, res, next) => {
   }
 });
 
+// ! Needs review
 router.get("/entries", async (req, res, next) => {
   const { query } = req;
   try {

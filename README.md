@@ -3,7 +3,7 @@
 ## Useful links
 
 - API URL: https://lambda-gigapet.herokuapp.com/
-- API Documentation:
+- API Documentation: https://mattshardman.github.io/slate/?javascript#introduction
 - Schema draft: https://airtable.com/invite/l?inviteId=invyoVfZQYErrQD6x&inviteToken=209673e8e1718f2a01bdccfc8aebe38b1cc08d86c54593ebe9d595e0c6727d39
 
 ## Git flow for teams:
