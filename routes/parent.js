@@ -17,8 +17,9 @@ router.post("/:id/child", async (req, res, next) => {
   const { id } = req.params;
   const { body } = req;
   try {
-    const child = await Child.add(id, body);
-    res.send(child);
+    const childId = await Child.add(id, body);
+    const child = await Child.getById(childId[0]).first();
+    res.status(200).send(child);
   } catch (error) {
     next({ status: 500, message: "Could not add child" });
   }

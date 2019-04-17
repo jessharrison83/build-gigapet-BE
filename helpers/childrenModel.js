@@ -8,7 +8,7 @@ module.exports = {
         "children.name",
         "children.pet_id",
         "children.pet_name",
-        "children.pet_level",
+        "children.pet_experience",
         "pets.happy",
         "pets.ok",
         "pets.sad",
