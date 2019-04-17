@@ -4,8 +4,9 @@ const db = require("../helpers/childrenModel");
 
 // Get child and pet details by id
 router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
   try {
-    const id = req.params.id;
     const child = await db.getById(id).first();
     res.status(200).json(child);
   } catch (error) {
@@ -35,8 +36,9 @@ router.put("/:id", async (req, res) => {
 
 // Delete child and pet details
 router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+
   try {
-    const id = req.params.id;
     const deletedResponse = await db.remove(id);
 
     if (deletedResponse) {
