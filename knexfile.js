@@ -1,6 +1,6 @@
 // const localPgConnection = {
 //   host: "localhost",
-//   database: "nifty",
+//   database: "gigapet",
 //   username: "delba",
 //   password: "delba"
 // };
