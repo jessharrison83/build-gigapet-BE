@@ -44,11 +44,11 @@ describe("add child to parent endpoint", () => {
                 .send({
                     "name": "Alfie",
                     "pet_name": "Alfatron",
-                    "pet_level": 4,
+                    "pet_experience": 3,
                     "pet_id": 1
                 });
 
-            console.log(res.body);
+            expect(res.status).toBe(201);
         } catch (error) {
             console.log(error); //eslint-disable-line
         }

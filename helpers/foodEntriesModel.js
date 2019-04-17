@@ -6,7 +6,8 @@ function filterData(entries) {
         carbs: [],
         vegetables: [],
         fruit: [],
-        diary: []
+        diary: [],
+        treats: [],
     };
 
     const sortedEntries = entries.reduce((acc, entry) => {
@@ -30,7 +31,7 @@ async function get(id) {
 
 async function getById(id) {
     try {
-        const entries = await db("food_entry").where({ id });
+        const entries = await db("food_entry").where({ id }).first();
         return entries;
     } catch (error) {
         return error;
@@ -45,7 +46,7 @@ async function add(id, entry) {
     
     try {
         const entryId = await db.insert(newEntry).into("food_entry");
-        const entries = await getById(entryId);
+        const entries = await getById(entryId[0]);
         return entries;
     } catch (error) {
         return error;
