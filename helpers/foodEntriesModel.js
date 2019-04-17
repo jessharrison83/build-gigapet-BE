@@ -1,20 +1,26 @@
 const db = require("./dbConfig");
 
+function filterData(entries) {
+    const initialAcc = { 
+        protein: [],
+        carbs: [],
+        vegetables: [],
+        fruit: [],
+        diary: []
+    };
+
+    const sortedEntries = entries.reduce((acc, entry) => {
+        acc[entry.category.toLowerCase()].push(entry);
+        return acc;
+    }, initialAcc);
+
+    return sortedEntries;
+}
+
 async function get(id) {
     try {
-        const entries = await db("food_entry").where({ child_id: id });
-        const initialAcc = { 
-            protein: [],
-            carbs: [],
-            vegetables: [],
-            fruit: [],
-            diary: []
-        };
-
-        const sortedEntries = entries.reduce((acc, entry) => {
-            acc[entry.category.toLowerCase()].push(entry);
-            return acc;
-        }, initialAcc);
+        const entries = await db("food_entry").where({ child_id: id });   
+        const sortedEntries = filterData(entries);
 
         return sortedEntries;
     } catch (error) {
@@ -67,23 +73,36 @@ async function remove(id) {
     }
 }
 
+function setDays(timeSpan) {
+    switch (timeSpan) {
+    case "day":
+        return 1;
+    case "week":
+        return 7;
+    case "month":
+        return 30;
+    }
+}
+
 async function getFilter(id, query) {
+    const days = setDays(query.time_span) || 365;
+   
+    const oneDay = 24 * 60 * 60 * 1000;
+    const dayFrom = new Date(Date.now() - (oneDay * days));
+
     try {
-        const entries = await db("food_entry").where({ child_id: id });
-        const initialAcc = { 
-            protein: [],
-            carbs: [],
-            vegetables: [],
-            fruit: [],
-            diary: []
-        };
+        const entries = await db("food_entry")
+            .where({ id })
+            .where("date_added", ">", dayFrom);
+        
+        const sortedEntries = filterData(entries);
 
-        const sortedEntries = entries.reduce((acc, entry) => {
-            acc[entry.category.toLowerCase()].push(entry);
-            return acc;
-        }, initialAcc);
+        let queryResult = sortedEntries;
 
-        return sortedEntries;
+        if (query.category) {
+            queryResult = { [query.category]: sortedEntries[query.category] };
+        }
+        return queryResult;
     } catch (error) {
         return error;
     }   
