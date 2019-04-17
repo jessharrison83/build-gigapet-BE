@@ -1,11 +1,11 @@
-const dummyPgConfig = {
-  host: "https://lambda-gigapet.herokuapp.com/",
-  database: "gigapet",
-  user: "user",
-  password: "pass"
+const localPgConnection = {
+  host: "localhost",
+  database: "nifty",
+  username: "delba",
+  password: "delba"
 };
 
-const productionDbConnection = process.env.DATABASE_URL || dummyPgConfig;
+const productionDbConnection = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
   development: {
