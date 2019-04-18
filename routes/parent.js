@@ -13,7 +13,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.post("/:id/child", async (req, res, next) => {  
+router.post("/:id/child", async (req, res, next) => {
     const { id } = req.params;
     const { body } = req;
     try {
