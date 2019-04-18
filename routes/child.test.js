@@ -17,8 +17,6 @@ const child = {
     pet_id: 1
 };
 
-const token = generateToken(parent);
-
 describe("Child Endpoint", () => {
     beforeEach(async () => {
         await db.seed.run();
