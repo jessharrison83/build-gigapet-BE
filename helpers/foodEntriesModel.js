@@ -77,19 +77,46 @@ function setDays(timeSpan) {
         return 7;
     case "month":
         return 30;
+    default:
+        return 365;
     }
 }
 
-async function getFilter(id, query) {
-    const days = setDays(query.time_span) || 365;
+async function getEntries(id, query) {
+    if (query.time_span) {
+        const days = setDays(query.time_span);
 
-    const oneDay = 24 * 60 * 60 * 1000;
-    const dayFrom = new Date(Date.now() - oneDay * days);
+        const oneDay = 24 * 60 * 60 * 1000;
+        const dayFrom = new Date(Date.now() - oneDay * days).toISOString();
 
-    try {
-        const entries = await db("food_entry")
-            .where({ id })
+        const res = await db("food_entry")
+            .where({ child_id: id })
             .where("date_added", ">", dayFrom);
+        return res;
+    }
+    if (query.specific_time_span) {
+        const [dateFromRaw, dateToRaw] = query.specific_time_span.split("to");
+        const dateFromToParse = isNaN(dateFromRaw)
+            ? dateFromRaw
+            : dateFromRaw * 1000;
+        const dateToToParse = isNaN(dateToRaw) ? dateToRaw : dateToRaw * 1000;
+        const dateFrom = new Date(dateFromToParse).toISOString();
+        const dateTo = new Date(dateToToParse).toISOString();
+
+        const res = await db("food_entry")
+            .where({ child_id: id })
+            .where("date_added", ">", dateFrom)
+            .where("date_added", "<", dateTo);
+        return res;
+    }
+
+    const res = await db("food_entry").where({ child_id: id });
+    return res;
+}
+
+async function getFilter(id, query) {
+    try {
+        const entries = await getEntries(id, query);
 
         const sortedEntries = filterData(entries);
 
