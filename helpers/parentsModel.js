@@ -20,7 +20,11 @@ async function get(id) {
                 "pets.sick",
                 "pets.eating"
             )
-            .innerJoin("parentsChildren", "parents.id", "parentsChildren.parent_id")
+            .innerJoin(
+                "parentsChildren",
+                "parents.id",
+                "parentsChildren.parent_id"
+            )
             .innerJoin("children", "parentsChildren.child_id", "children.id")
             .innerJoin("pets", "children.pet_id", "pets.id");
 
@@ -33,6 +37,8 @@ async function get(id) {
             id: parent.id,
             name: parent.name,
             img_url: parent.img_url,
+            email: parent.email,
+            username: parent.username,
             childArray
         };
 
@@ -42,4 +48,11 @@ async function get(id) {
     }
 }
 
-module.exports = { get };
+function update(id, body) {
+    return db("parents")
+        .where({ id })
+        .update(body)
+        .then(num => num);
+}
+
+module.exports = { get, update };
