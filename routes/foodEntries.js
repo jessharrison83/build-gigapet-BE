@@ -1,10 +1,30 @@
 const router = require("express").Router();
 const Food = require("../helpers/foodEntriesModel");
 
-router.get("/child/:id/entries", async (req, res, next) => {
-    const { id } = req.params;
-    const { query } = req;
+// router.get("/child/:id/entries", async (req, res, next) => {
+//     const { id } = req.params;
+//     const { query } = req;
 
+//     try {
+//         let entries;
+//         const queriesExist = Object.keys(query).length;
+//         if (queriesExist) {
+//             entries = await Food.getFilter(id, query);
+//         } else {
+//             entries = await Food.get(id);
+//         }
+//         res.status(200).json(entries);
+//     } catch (error) {
+//         next({
+//             status: 500,
+//             message: "Entry not found"
+//         });
+//     }
+// });
+
+router.get("/child/:id/entries", async (req, res, next) => {
+    const id = req.params.id;
+    const { query } = req;
     try {
         let entries;
         const queriesExist = Object.keys(query).length;
