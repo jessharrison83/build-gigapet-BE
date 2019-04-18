@@ -70,7 +70,7 @@ async function remove(id) {
 }
 
 function setDays(timeSpan) {
-    switch(timeSpan) {
+    switch (timeSpan) {
     case "day":
         return 1;
     case "week":
@@ -96,11 +96,13 @@ async function getEntries(id, query) {
     }
     if (query.specific_time_span) {
         const [dateFromRaw, dateToRaw] = query.specific_time_span.split("to");
-        const dateFromToParse = isNaN(dateFromRaw) ? dateFromRaw : dateFromRaw * 1000;
+        const dateFromToParse = isNaN(dateFromRaw)
+            ? dateFromRaw
+            : dateFromRaw * 1000;
         const dateToToParse = isNaN(dateToRaw) ? dateToRaw : dateToRaw * 1000;
         const dateFrom = new Date(dateFromToParse).toISOString();
         const dateTo = new Date(dateToToParse).toISOString();
-        
+
         const res = await db("food_entry")
             .where({ child_id: id })
             .where("date_added", ">", dateFrom)
@@ -108,8 +110,7 @@ async function getEntries(id, query) {
         return res;
     }
 
-    const res = await db("food_entry")
-        .where({ child_id: id });
+    const res = await db("food_entry").where({ child_id: id });
     return res;
 }
 

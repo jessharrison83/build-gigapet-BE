@@ -14,7 +14,7 @@ const userObj = {
     email: "mark@markey.com", // required, must be unique
     username: "markymark", // required, must be unique
     password: "xxx", // required
-    img_url: "", // not required
+    img_url: "" // not required
 };
 
 describe("Register new user", () => {
@@ -47,13 +47,13 @@ describe("Login user", () => {
         } catch (error) {
             console.log(error); //eslint-disable-line
         }
-        
+
         try {
             const res = await request(server)
                 .post(routes.login)
                 .send({
                     username: "markymark", // required, must be unique
-                    password: "xxx", // required
+                    password: "xxx" // required
                 });
 
             expect(res.status).toBe(200);
@@ -79,11 +79,10 @@ describe("Login user", () => {
                 if (error) {
                     console.log(error); //eslint-disable-line
                 } else {
-                    expect(decoded.id).toBe(1);
+                    expect(typeof decoded.id).toBeTruthy();
                     expect(decoded.username).toBe("markymark");
                 }
             });
-                
         } catch (error) {
             console.log(error); //eslint-disable-line
         }

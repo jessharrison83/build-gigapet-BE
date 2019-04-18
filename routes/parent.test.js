@@ -4,14 +4,14 @@ const { generateToken } = require("../middleware/auth");
 
 const db = require("../helpers/dbConfig");
 
-const token = generateToken({ 
+const token = generateToken({
     id: 5,
     username: "Matt"
 });
 
 const authHeader = "Authorization";
 
-describe("parent endpoint", () => { 
+describe("parent endpoint", () => {
     afterEach(async () => {
         await db("parents").truncate();
         await db("children").truncate();
@@ -23,12 +23,9 @@ describe("parent endpoint", () => {
                 .get("/api/parent/2")
                 .set(authHeader, token);
 
-            expect(res.type)
-                .toBe("application/json"); 
-            expect(res.status) 
-                .toBe(200);
-            expect(res.body)
-                .toEqual({});
+            expect(res.type).toBe("application/json");
+            expect(res.status).toBe(200);
+            expect(res.body).toEqual({});
         } catch (error) {
             console.log(error); //eslint-disable-line
         }
@@ -42,10 +39,10 @@ describe("add child to parent endpoint", () => {
                 .post("/api/parent/1/child")
                 .set(authHeader, token)
                 .send({
-                    "name": "Alfie",
-                    "pet_name": "Alfatron",
-                    "pet_experience": 3,
-                    "pet_id": 1
+                    name: "Alfie",
+                    pet_name: "Alfatron",
+                    pet_experience: 3,
+                    pet_id: 1
                 });
 
             expect(res.status).toBe(201);
