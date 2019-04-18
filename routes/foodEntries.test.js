@@ -17,14 +17,14 @@ describe("GET /child/:id/entries", () => {
         .set(authHeader, token);
 
       expect(res.status).toBe(200);
-      expect(res.body).toEqual({
-        carbs: [],
-        fruit: [],
-        protein: [],
-        vegetables: [],
-        dairy: [],
-        treats: []
-      });
+      expect(res.body).toHaveProperty(
+        "carbs",
+        "fruit",
+        "protein",
+        "vegetables",
+        "dairy",
+        "treats"
+      );
     } catch (error) {
       console.log(error); //eslint-disable-line
     }
