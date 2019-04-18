@@ -42,7 +42,7 @@ describe("Pets Endpoint", () => {
     expect(typeof response.body).not.toBe("null");
     expect(typeof response.body).not.toBe("undefined");
     expect(typeof response.body).not.toBe("function");
-    expect(response.body).not.toEqual({});
-    expect(response.body).toEqual([]);
+
+    expect(Array.isArray(response.body)).toBeTruthy();
   });
 });
