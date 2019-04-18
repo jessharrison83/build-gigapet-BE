@@ -1,29 +1,38 @@
 const db = require("./dbConfig");
 
-function filterData(entries) {
-    const initialAcc = {
-        protein: [],
-        carbs: [],
-        vegetables: [],
-        fruit: [],
-        dairy: [],
-        treats: []
-    };
+// function filterData(entries) {
+//     const initialAcc = {
+//         protein: [],
+//         carbs: [],
+//         vegetables: [],
+//         fruit: [],
+//         dairy: [],
+//         treats: []
+//     };
 
-    const sortedEntries = entries.reduce((acc, entry) => {
-        acc[entry.category.toLowerCase()].push(entry);
-        return acc;
-    }, initialAcc);
+//     const sortedEntries = entries.reduce((acc, entry) => {
+//         acc[entry.category.toLowerCase()].push(entry);
+//         return acc;
+//     }, initialAcc);
 
-    return sortedEntries;
-}
+//     return sortedEntries;
+// }
+
+// async function get(id) {
+//     try {
+//         const entries = await db("food_entry").where({ child_id: id });
+//         const sortedEntries = filterData(entries);
+
+//         return sortedEntries;
+//     } catch (error) {
+//         return error;
+//     }
+// }
 
 async function get(id) {
     try {
         const entries = await db("food_entry").where({ child_id: id });
-        const sortedEntries = filterData(entries);
-
-        return sortedEntries;
+        return entries;
     } catch (error) {
         return error;
     }
@@ -114,16 +123,33 @@ async function getEntries(id, query) {
     return res;
 }
 
+// async function getFilter(id, query) {
+//     try {
+//         const entries = await getEntries(id, query);
+
+//         const sortedEntries = filterData(entries);
+
+//         let queryResult = sortedEntries;
+
+//         if (query.category) {
+//             queryResult = { [query.category]: sortedEntries[query.category] };
+//         }
+//         return queryResult;
+//     } catch (error) {
+//         return error;
+//     }
+// }
+
 async function getFilter(id, query) {
     try {
         const entries = await getEntries(id, query);
 
-        const sortedEntries = filterData(entries);
+        // const sortedEntries = filterData(entries);
 
-        let queryResult = sortedEntries;
+        let queryResult = entries;
 
         if (query.category) {
-            queryResult = { [query.category]: sortedEntries[query.category] };
+            queryResult = { [query.category]: queryResult[query.category] };
         }
         return queryResult;
     } catch (error) {
