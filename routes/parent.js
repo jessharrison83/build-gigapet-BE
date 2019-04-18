@@ -25,4 +25,23 @@ router.post("/:id/child", async (req, res, next) => {
     }
 });
 
+router.put("/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+        const updatedResponse = await Parent.update(id, body);
+
+        if (updatedResponse) {
+            const responseBody = await Parent.get(id);
+            res.status(200).json(responseBody);
+        } else {
+            res.status(404).json({
+                message: `The parent with ID ${id} doesn't exist`
+            });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Error updating parent" });
+    }
+});
+
 module.exports = router;

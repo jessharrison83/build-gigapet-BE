@@ -31,7 +31,7 @@ router.put("/:id", async (req, res) => {
             });
         }
     } catch (error) {
-        res.status(500).json({ message: "Error retrieving child" });
+        res.status(500).json({ message: "Error updating child" });
     }
 });
 
