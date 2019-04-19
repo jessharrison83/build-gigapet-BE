@@ -1,28 +1,7 @@
 const router = require("express").Router();
 const Food = require("../helpers/foodEntriesModel");
 
-// router.get("/child/:id/entries", async (req, res, next) => {
-//     const { id } = req.params;
-//     const { query } = req;
-
-//     try {
-//         let entries;
-//         const queriesExist = Object.keys(query).length;
-//         if (queriesExist) {
-//             entries = await Food.getFilter(id, query);
-//         } else {
-//             entries = await Food.get(id);
-//         }
-//         res.status(200).json(entries);
-//     } catch (error) {
-//         next({
-//             status: 500,
-//             message: "Entry not found"
-//         });
-//     }
-// });
-
-router.get("/child/:id/entries", async (req, res, next) => {
+router.get("/child/:id/entries", async (req, res) => {
     const id = req.params.id;
     const { query } = req;
     try {
@@ -35,28 +14,22 @@ router.get("/child/:id/entries", async (req, res, next) => {
         }
         res.status(200).json(entries);
     } catch (error) {
-        next({
-            status: 500,
-            message: "Entry not found"
-        });
+        res.status(500).json({ message: "Entry not found" });
     }
 });
 
-router.post("/child/:id/entries", async (req, res, next) => {
+router.post("/child/:id/entries", async (req, res) => {
     const { id } = req.params;
     const entry = req.body;
     try {
         const entries = await Food.add(id, entry);
         res.status(201).json(entries);
     } catch (error) {
-        next({
-            status: 500,
-            message: "Entry not found"
-        });
+        res.status(500).json({ message: "Entry not found" });
     }
 });
 
-router.put("/entries/:id", async (req, res, next) => {
+router.put("/entries/:id", async (req, res) => {
     const { id } = req.params;
     const entry = req.body;
     try {
@@ -68,14 +41,11 @@ router.put("/entries/:id", async (req, res, next) => {
             res.status(404).json({ message: "Entry could not be updated" });
         }
     } catch (error) {
-        next({
-            status: 500,
-            message: "Entry not found"
-        });
+        res.status(500).json({ message: "Entry not found" });
     }
 });
 
-router.delete("/entries/:id", async (req, res, next) => {
+router.delete("/entries/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const response = await Food.remove(id);
@@ -86,10 +56,7 @@ router.delete("/entries/:id", async (req, res, next) => {
             });
         }
     } catch (error) {
-        next({
-            status: 500,
-            message: "Entry not found"
-        });
+        res.status(500).json({ message: "Entry not found" });
     }
 });
 
