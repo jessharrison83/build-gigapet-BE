@@ -28,6 +28,14 @@ exports.seed = function(knex, Promise) {
                     pin: 1234,
                     img_url:
                         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                },
+                {
+                    name: "bwteam",
+                    email: "bw@lambda.com",
+                    username: "GigaPet1",
+                    password: "bu1ldt3am",
+                    pin: 1234,
+                    img_url: "https://cdn.pixabay.com/photo/2017/02/01/11/17/alien-2029727_960_720.png"
                 }
             ]);
         });
