@@ -6,7 +6,6 @@ let stevePassword = bcrypt.hashSync("steve", 10);
 exports.seed = function(knex, Promise) {
     // Deletes ALL existing entries
     return knex("parents")
-        .truncate()
         .then(function() {
             // Inserts seed entries
             return knex("parents").insert([
