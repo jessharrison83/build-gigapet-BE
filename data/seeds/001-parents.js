@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 
 let jeremyPassword = bcrypt.hashSync("jeremy", 10);
 let stevePassword = bcrypt.hashSync("steve", 10);
+let bwPW = bcrypt.hashSync("bu1ldt3am", 10);
 
 exports.seed = function(knex, Promise) {
     // Deletes ALL existing entries
@@ -34,7 +35,7 @@ exports.seed = function(knex, Promise) {
                     name: "bwteam",
                     email: "bw@lambda.com",
                     username: "GigaPet1",
-                    password: "bu1ldt3am",
+                    password: bwPW,
                     pin: 1234,
                     img_url: "https://cdn.pixabay.com/photo/2017/02/01/11/17/alien-2029727_960_720.png"
                 }
