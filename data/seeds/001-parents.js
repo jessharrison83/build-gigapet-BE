@@ -29,15 +29,6 @@ exports.seed = function(knex, Promise) {
                     pin: 1234,
                     img_url:
                         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                },
-                {   
-                    id: 3,
-                    name: "bwteam",
-                    email: "bw@lambda.com",
-                    username: "GigaPet1",
-                    password: bwPW,
-                    pin: 1234,
-                    img_url: "https://cdn.pixabay.com/photo/2017/02/01/11/17/alien-2029727_960_720.png"
                 }
             ]);
         });
