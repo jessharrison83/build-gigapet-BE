@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const db = require("../helpers/dbConfig");
 
-const key = process.env.SECRET;
+const key = process.env.SECRET || "gigapetBuild";
 
 module.exports = {
     authenticate,
