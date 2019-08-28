@@ -30,6 +30,7 @@ function authenticate(req, res, next) {
                 return res.status(401).json(err);
             } else {
                 req.decoded = decoded;
+                console.log(decoded)
                 req.user = await db("parents").where({ id: req.decoded.id });
                 next();
             }
